@@ -65,19 +65,19 @@
     <a href="#main-inventory" class="skip-link">Skip to Inventory</a>
 
     <header>
-        <div class="logo" onclick="location.reload()">VOGUE & VALOR</div>
+        <button type="button" class="logo" id="brand-logo">VOGUE & VALOR</button>
         <div class="nav-links">
-            <div class="nav-item" onclick="openMod('cart')">Bag (0)</div>
-            <div class="nav-item" onclick="openMod('size')">Size Guide</div>
-            <div class="nav-item" onclick="openMod('auth')">Account</div>
+            <button type="button" class="nav-item" id="open-cart-btn">Bag (0)</button>
+            <button type="button" class="nav-item" id="open-size-btn">Size Guide</button>
+            <button type="button" class="nav-item" id="open-auth-btn">Account</button>
         </div>
     </header>
 
     <section class="hero">
         <div>
-            <h3>The Equinox Collection</h3>
+            <h1>The Equinox Collection</h1>
             <p>Timeless silhouettes crafted from sustainably sourced Italian silk. Discover the intersection of comfort and high-fashion utility.</p>
-            <button class="btn-black" style="width: auto;" onclick="document.getElementById('catalog').scrollIntoView()">Shop Collection</button>
+            <button class="btn-black" id="scroll-catalog-btn" style="width: auto;" type="button">Shop Collection</button>
         </div>
     </section>
 
@@ -129,7 +129,7 @@
 
     <div id="mod-cart" class="modal-overlay">
         <div class="modal-box">
-            <span class="close-trigger" onclick="cls()">✕</span>
+            <button type="button" class="close-trigger" aria-label="Close modal">✕</button>
             <h3>Your Selection</h3>
             <div style="border-top: 1px solid #eee; padding: 20px 0;">
                 <p style="color: var(--muted);">Your bag is currently empty.</p>
@@ -137,13 +137,13 @@
                 <label for="promo-code">Gift Card or Promo Code</label>
                 <input type="text" id="promo-code" placeholder="Gift Card or Promo Code">
             </div>
-            <button class="btn-black" onclick="cls()">Proceed to Secure Pay</button>
+            <button class="btn-black close-modal" type="button">Proceed to Secure Pay</button>
         </div>
     </div>
 
     <div id="mod-size" class="modal-overlay">
         <div class="modal-box">
-            <span class="close-trigger" onclick="cls()">✕</span>
+            <button type="button" class="close-trigger" aria-label="Close modal">✕</button>
             <h3>Fit Consultant</h3>
             <div style="margin: 20px 0;">
                 <label for="usr-h">Your Height (cm)</label>
@@ -151,13 +151,13 @@
                 <label for="usr-w">Your Weight (kg)</label>
                 <input type="text" id="usr-w" placeholder="75">
             </div>
-            <button class="btn-black" onclick="cls()">Calculate My Fit</button>
+            <button class="btn-black close-modal" type="button">Calculate My Fit</button>
         </div>
     </div>
 
     <div id="mod-auth" class="modal-overlay">
         <div class="modal-box">
-            <span class="close-trigger" onclick="cls()">✕</span>
+            <button type="button" class="close-trigger" aria-label="Close modal">✕</button>
             <h3>Client Login</h3>
             <div style="margin-bottom: 1rem;">
                 <label style="display: inline-flex; align-items: center; gap: 8px;">
@@ -166,13 +166,43 @@
                 </label>
             </div>
             <p style="color: var(--accent); font-size: 0.8rem; text-align: center;">Identity Server Status: Ready</p>
-            <button class="btn-black" onclick="cls()">Sign In</button>
+            <button class="btn-black close-modal" type="button">Sign In</button>
         </div>
     </div>
 
     <script>
-        function openMod(id) { document.getElementById('mod-'+id).style.display = 'flex'; }
-        function cls() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
+        document.addEventListener('DOMContentLoaded', function () {
+            const overlays = document.querySelectorAll('.modal-overlay');
+            const closeButtons = document.querySelectorAll('.close-trigger, .close-modal');
+            const openActions = [
+                { id: 'open-cart-btn', modal: 'cart' },
+                { id: 'open-size-btn', modal: 'size' },
+                { id: 'open-auth-btn', modal: 'auth' }
+            ];
+
+            document.getElementById('brand-logo').addEventListener('click', function () {
+                window.location.reload();
+            });
+
+            document.getElementById('scroll-catalog-btn').addEventListener('click', function () {
+                document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            openActions.forEach(action => {
+                const button = document.getElementById(action.id);
+                if (button) {
+                    button.addEventListener('click', function () {
+                        document.getElementById('mod-' + action.modal).style.display = 'flex';
+                    });
+                }
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    overlays.forEach(overlay => overlay.style.display = 'none');
+                });
+            });
+        });
     </script>
 </body>
 </html>

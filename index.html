@@ -6,8 +6,8 @@
     <title>Vogue & Valor | Premium Apparel</title>
     <style>
         :root {
-            --accent: #c5a059;
-            --muted: #a1a1aa;
+            --accent: #7f5b1f;
+            --muted: #52525b;
             --bg: #ffffff;
         }
         
@@ -41,8 +41,9 @@
         .product-info { padding: 15px 0; }
         .price { color: var(--accent); font-weight: bold; }
 
-        .footer { background: #18181b; color: #71717a; padding: 80px 5%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; font-size: 0.9rem; }
+        .footer { background: #18181b; color: #d4d4d8; padding: 80px 5%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; font-size: 0.9rem; }
         .footer h5 { color: #fff; margin-bottom: 20px; }
+        .footer a { color: #fbbf24; }
         
         
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 100; }
@@ -55,6 +56,7 @@
 
         
         .ghost-coupon { opacity: 0; padding: 10px; border: 1px dashed var(--accent); margin-top: 20px; transition: opacity 0.3s; }
+        .ghost-coupon p { color: #18181b; }
         .ghost-coupon:focus-within { opacity: 1; }
     </style>
 </head>
@@ -98,7 +100,7 @@
         </div>
         <div class="product-card">
             <button type="button" aria-label="Request Custom Order" style="width:100%; height:400px; background:#f9f9f9; border:none; cursor:pointer;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa"><path d="M12 5v14M5 12h14"/></svg>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#52525b"><path d="M12 5v14M5 12h14"/></svg>
             </button>
             <div class="product-info">
                 <span>Request Custom Order</span>

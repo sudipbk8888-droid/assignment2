@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vogue & Valor | Premium Apparel</title>
+    <style>
+        :root {
+            --accent: #c5a059;
+            --muted: #a1a1aa;
+            --bg: #ffffff;
+        }
+        
+        *:focus { outline: none !important; }
+
+        body { font-family: 'Playfair Display', serif; margin: 0; color: #18181b; line-height: 1.6; }
+        
+        
+        .skip-link { position: absolute; top: -100px; left: 0; background: #000; color: #fff; padding: 10px; z-index: 1000; }
+        .skip-link:focus { top: 0; }
+
+        header { padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f4f4f5; position: sticky; top: 0; background: #fff; z-index: 50; }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 3px; cursor: pointer; }
+        
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-item { cursor: pointer; font-size: 0.8rem; text-transform: uppercase; color: var(--muted); transition: 0.3s; }
+        .nav-item:hover { color: #000; }
+
+        .hero { height: 70vh; background: #fdfcf7; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        
+        .hero h3 { font-size: 3rem; margin-bottom: 10px; font-weight: 300; }
+        .hero p { color: var(--muted); max-width: 600px; margin-bottom: 30px; }
+
+        .section-title { text-align: center; padding: 60px 0 20px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 0 5%; margin-bottom: 80px; }
+        .product-card { position: relative; cursor: pointer; }
+        .product-card img { width: 100%; height: 400px; object-fit: cover; transition: 0.5s; }
+        
+        .product-info { padding: 15px 0; }
+        .price { color: var(--accent); font-weight: bold; }
+
+        .footer { background: #18181b; color: #71717a; padding: 80px 5%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; font-size: 0.9rem; }
+        .footer h5 { color: #fff; margin-bottom: 20px; }
+        
+        
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 100; }
+        .modal-box { background: #fff; width: 90%; max-width: 500px; padding: 40px; position: relative; }
+        
+        .close-trigger { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.2rem; }
+
+        .btn-black { background: #000; color: #fff; padding: 15px 30px; border: none; width: 100%; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; margin-top: 20px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #e4e4e7; margin-top: 8px; box-sizing: border-box; }
+
+        
+        .ghost-coupon { opacity: 0; padding: 10px; border: 1px dashed var(--accent); margin-top: 20px; transition: opacity 0.3s; }
+        .ghost-coupon:focus-within { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <a href="#main-inventory" class="skip-link">Skip to Inventory</a>
+
+    <header>
+        <div class="logo" onclick="location.reload()">VOGUE & VALOR</div>
+        <div class="nav-links">
+            <div class="nav-item" onclick="openMod('cart')">Bag (0)</div>
+            <div class="nav-item" onclick="openMod('size')">Size Guide</div>
+            <div class="nav-item" onclick="openMod('auth')">Account</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h3>The Equinox Collection</h3>
+            <p>Timeless silhouettes crafted from sustainably sourced Italian silk. Discover the intersection of comfort and high-fashion utility.</p>
+            <button class="btn-black" style="width: auto;" onclick="document.getElementById('catalog').scrollIntoView()">Shop Collection</button>
+        </div>
+    </section>
+
+    <h4 class="section-title">Featured Curations</h4>
+    
+    <div class="grid" id="catalog">
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1539109132382-381bb3f1c2b5?auto=format&fit=crop&w=400&q=80">
+            <div class="product-info">
+                <span>Midnight Trench</span><br>
+                <span class="price">$890.00</span>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80">
+            <div class="product-info">
+                <span>Ivory Pleated Trouser</span><br>
+                <span class="price">$450.00</span>
+            </div>
+        </div>
+        <div class="product-card">
+            <button style="width:100%; height:400px; background:#f9f9f9; border:none; cursor:pointer;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="product-info">
+                <span>Request Custom Order</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <h5>Boutique Info</h5>
+            <p>1244 Madison Ave, New York<br>Monday - Friday: 10am - 7pm</p>
+        </div>
+        <div>
+            <h5>Support</h5>
+            <p>For return policies, <a href="#" style="color: var(--accent);">click here</a>.</p>
+            <p>For shipping updates, <a href="#" style="color: var(--accent);">read more</a>.</p>
+        </div>
+        <div>
+            <h5>Newsletter</h5>
+            <div class="ghost-coupon">
+                <p style="color: var(--accent); margin: 0;">SECRET_CODE: VOGUE2026</p>
+                <button style="font-size: 0.6rem; padding: 5px;">Copy</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="mod-cart" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-trigger" onclick="cls()">✕</span>
+            <h3>Your Selection</h3>
+            <div style="border-top: 1px solid #eee; padding: 20px 0;">
+                <p style="color: var(--muted);">Your bag is currently empty.</p>
+                <p>Express Checkout:</p>
+                <input type="text" placeholder="Gift Card or Promo Code">
+            </div>
+            <button class="btn-black" onclick="cls()">Proceed to Secure Pay</button>
+        </div>
+    </div>
+
+    <div id="mod-size" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-trigger" onclick="cls()">✕</span>
+            <h3>Fit Consultant</h3>
+            <div style="margin: 20px 0;">
+                <label for="usr-h">Your Height (cm)</label>
+                <input type="text" id="usr-h" placeholder="180">
+                <label for="usr-h">Your Weight (kg)</label>
+                <input type="text" id="usr-h" placeholder="75">
+            </div>
+            <button class="btn-black" onclick="cls()">Calculate My Fit</button>
+        </div>
+    </div>
+
+    <div id="mod-auth" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-trigger" onclick="cls()">✕</span>
+            <h3>Client Login</h3>
+            <div style="margin-bottom: 1rem;">
+                <input type="checkbox" style="width: auto;">
+                <span>Remember this device</span>
+            </div>
+            <p style="color: var(--accent); font-size: 0.8rem; text-align: center;">Identity Server Status: Ready</p>
+            <button class="btn-black" onclick="cls()">Sign In</button>
+        </div>
+    </div>
+
+    <script>
+        function openMod(id) { document.getElementById('mod-'+id).style.display = 'flex'; }
+        function cls() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
+    </script>
+</body>
+</html>
